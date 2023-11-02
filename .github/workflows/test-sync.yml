@@ -352,10 +352,16 @@ jobs:
       run: |
         cd build/Debug
         mkdir data
+        Get-Date -Format HH:mm:ss.fff
+        echo "Starting stratum dummy clients"
         Start-Process python -ArgumentList "../../tests/src/stratum_dummy.py 1"
         Start-Process python -ArgumentList "../../tests/src/stratum_dummy.py 2"
         Start-Process python -ArgumentList "../../tests/src/stratum_dummy.py 3"
+        Get-Date -Format HH:mm:ss.fff
+        echo "Starting P2Pool"
         ./p2pool.exe --host xmrnode.facspro.net --rpc-port 18089 --zmq-port 18084 --host xmr2.rs.me --wallet 44MnN1f3Eto8DZYUWuE5XZNUtE3vcRzt2j6PzqWpPau34e6Cf4fAxt6X2MBmrm6F9YMEiMNjN6W4Shn4pLcfNAja621jwyg --mini --out-peers 200 --data-api data --local-api --loglevel 6
+        echo "P2Pool finished"
+        Get-Date -Format HH:mm:ss.fff
 
     - name: Check p2pool.log
       run: |
@@ -395,10 +401,16 @@ jobs:
       run: |
         cd build/RelWithDebInfo
         mkdir data
+        Get-Date -Format HH:mm:ss.fff
+        echo "Starting stratum dummy clients"
         Start-Process python -ArgumentList "../../tests/src/stratum_dummy.py 1"
         Start-Process python -ArgumentList "../../tests/src/stratum_dummy.py 2"
         Start-Process python -ArgumentList "../../tests/src/stratum_dummy.py 3"
+        Get-Date -Format HH:mm:ss.fff
+        echo "Starting P2Pool"
         ./p2pool.exe --host xmrnode.facspro.net --rpc-port 18089 --zmq-port 18084 --host xmr2.rs.me --wallet 44MnN1f3Eto8DZYUWuE5XZNUtE3vcRzt2j6PzqWpPau34e6Cf4fAxt6X2MBmrm6F9YMEiMNjN6W4Shn4pLcfNAja621jwyg --mini --out-peers 200 --data-api data --local-api --loglevel 6
+        echo "P2Pool finished"
+        Get-Date -Format HH:mm:ss.fff
 
     - name: Check p2pool.log
       run: |
